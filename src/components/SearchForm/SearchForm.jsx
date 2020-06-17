@@ -35,7 +35,12 @@ export default class SearchForm extends Component {
             />
           </InputGroup>
 
-          <Button variant="outline-light" size="lg" type="submit">
+          <Button
+            className="search-btn"
+            variant="outline-light"
+            size="lg"
+            type="submit"
+          >
             {this.props.buttonText}
           </Button>
         </form>
