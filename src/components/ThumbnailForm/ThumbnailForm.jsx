@@ -4,20 +4,35 @@ import React, { Component } from "react";
 export default class ThumbnailSearchBar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoading: false,
+    };
+
+    this.parseUserInput = this.parseUserInput.bind(this);
     this.getVideoInfo = this.getVideoInfo.bind(this);
   }
 
-  getVideoInfo(url) {
-    console.log(`Getting thumbnails from the following URL: ${url}`);
-    const BASE_URL = "https://www.googleapis.com/youtube/v3";
-    const API_KEY = "AIzaSyDHXwLACnzxWVGqZgiBY9RBvNH5QB_NIHA";
-
+  parseUserInput(url) {
     try {
       // Parse user input
       const ID = url.split("watch?v=")[1].split("&")[0];
+      this.getVideoInfo(ID);
+    } catch (error) {
+      // Failed to parse user input
+      console.error(error.message);
+    }
+  }
 
-      // Get video information
-      fetch(`${BASE_URL}/videos?key=${API_KEY}&part=snippet&id=${ID}`)
+  getVideoInfo(id) {
+    const BASE_URL = "https://www.googleapis.com/youtube/v3";
+    const API_KEY = "AIzaSyDHXwLACnzxWVGqZgiBY9RBvNH5QB_NIHA";
+    const VIDEO_URL = `${BASE_URL}/videos?key=${API_KEY}&part=snippet&id=${id}`;
+    console.log(`Getting thumbnails from the following URL: ${VIDEO_URL}`);
+
+    // Disable Get Thumbnails button
+    this.setState({ isLoading: true }, () => {
+      // Fetch video information
+      fetch(VIDEO_URL)
         .then(function (response) {
           if (response.status !== 200) {
             console.log("Something went wrong!");
@@ -25,11 +40,9 @@ export default class ThumbnailSearchBar extends Component {
             return response.json();
           }
         })
-        .then((json) => this.props.onVideoInfoFetched(json.items[0].snippet));
-    } catch (error) {
-      // Failed to parse user input
-      console.error(error.message);
-    }
+        .then((json) => this.props.onVideoInfoFetched(json.items[0].snippet))
+        .then(() => this.setState({ isLoading: false }));
+    });
   }
 
   render() {
@@ -37,7 +50,8 @@ export default class ThumbnailSearchBar extends Component {
       <SearchForm
         placeholderText="Enter Youtube video URL"
         buttonText="Get Thumbnails"
-        onSubmit={this.getVideoInfo}
+        isLoading={this.state.isLoading}
+        onSubmit={this.parseUserInput}
       />
     );
   }

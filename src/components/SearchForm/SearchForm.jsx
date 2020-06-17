@@ -9,10 +9,15 @@ export default class SearchForm extends Component {
     super(props);
     this.state = {
       input: "",
+      isLoading: false,
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ isLoading: props.isLoading });
   }
 
   onChange(e) {
@@ -35,8 +40,13 @@ export default class SearchForm extends Component {
             />
           </InputGroup>
 
-          <Button variant="outline-light" size="lg" type="submit">
-            {this.props.buttonText}
+          <Button
+            variant="outline-light"
+            size="lg"
+            type="submit"
+            disabled={this.state.isLoading}
+          >
+            {this.state.isLoading ? "Fetching..." : this.props.buttonText}
           </Button>
         </form>
       </div>
