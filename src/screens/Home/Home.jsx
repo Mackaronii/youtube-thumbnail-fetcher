@@ -12,16 +12,20 @@ export default class Home extends Component {
       videoInfo: undefined,
     };
 
+    this.onBadUserInput = this.onBadUserInput.bind(this);
     this.onVideoInfoFetched = this.onVideoInfoFetched.bind(this);
-    this.extractVideoInfo = this.extractVideoInfo.bind(this);
+    this.loadVideoInfo = this.loadVideoInfo.bind(this);
+  }
+
+  onBadUserInput() {
+    console.log("Failed to parse the URL");
   }
 
   onVideoInfoFetched(info) {
-    this.extractVideoInfo(info);
+    this.loadVideoInfo(info);
   }
 
-  extractVideoInfo(info) {
-    console.log(info);
+  loadVideoInfo(info) {
     this.setState({
       videoInfoLoaded: true,
       videoInfo: info,
@@ -41,7 +45,10 @@ export default class Home extends Component {
         <Container className="home-container">
           <h1>Youtube Thumbnail Fetcher</h1>
           <p>View Youtube thumbnails in various resolutions.</p>
-          <ThumbnailForm onVideoInfoFetched={this.onVideoInfoFetched} />
+          <ThumbnailForm
+            onVideoInfoFetched={this.onVideoInfoFetched}
+            onBadUserInput={this.onBadUserInput}
+          />
           {thumbnailDetails}
         </Container>
       </div>
