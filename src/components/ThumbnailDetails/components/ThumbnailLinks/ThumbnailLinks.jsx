@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
+import "./ThumbnailLinks.css";
 
-export default class DownloadViewPanel extends Component {
+export default class ThumbnailLinks extends Component {
   render() {
     const thumbnails = this.props.thumbnails;
 
@@ -13,6 +14,7 @@ export default class DownloadViewPanel extends Component {
     const THUMBNAIL_STANDARD = thumbnails.standard;
     const THUMBNAIL_MAXRES = thumbnails.maxres;
 
+    // Prepare array for mapping to Buttons
     const thumbnailArray = [
       THUMBNAIL_DEFAULT,
       THUMBNAIL_MEDIUM,
@@ -21,18 +23,15 @@ export default class DownloadViewPanel extends Component {
       THUMBNAIL_MAXRES,
     ];
 
-    const VIDEO_WIDTH = this.props.thumbnails.width;
-    const VIDEO_HEIGHT = this.props.thumbnails.height;
-    const VIDEO_URL = this.props.thumbnails.url;
-
     return (
-      <div>
+      <div className="thumbnail-links">
         <h3>Thumbnail Links</h3>
-        <ButtonGroup aria-label="Basic example">
+        <ButtonGroup>
           {thumbnailArray.map(function (item, i) {
+            const BUTTON_LABEL = `${item.width}x${item.height}`;
             return (
-              <Button variant="light" href={item.url} target="_blank">
-                {item.width}x{item.height}
+              <Button key={i} variant="light" href={item.url} target="_blank">
+                {BUTTON_LABEL}
               </Button>
             );
           })}

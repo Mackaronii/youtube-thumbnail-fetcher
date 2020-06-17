@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import VideoInfo from "./components/VideoInfo/VideoInfo";
-import DownloadVidePanel from "./components/DownloadViewPanel/DownloadViewPanel";
+import ThumbnailLinks from "./components/ThumbnailLinks/ThumbnailLinks";
 
 export default class ThumbnailDetails extends Component {
   render() {
@@ -26,7 +26,7 @@ export default class ThumbnailDetails extends Component {
       <Container className="thumbnail-details-container">
         <Row>
           <Col>
-            <Image src={THUMBNAIL_MAXRES.url} fluid />
+            <Image src={THUMBNAIL_MAXRES.url} thumbnail fluid />
           </Col>
           <Col>
             <VideoInfo title="Video Title" body={TITLE} />
@@ -34,7 +34,7 @@ export default class ThumbnailDetails extends Component {
             <VideoInfo title="Publish Date" body={PUBLISH_DATE} />
           </Col>
         </Row>
-        <DownloadVidePanel thumbnails={thumbnails} />
+        <ThumbnailLinks thumbnails={thumbnails} />
       </Container>
     );
   }
