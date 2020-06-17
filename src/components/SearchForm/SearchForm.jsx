@@ -26,7 +26,7 @@ export default class SearchForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="search-form">
         <form onSubmit={this.onSubmit}>
           <InputGroup size="lg">
             <FormControl
@@ -35,12 +35,7 @@ export default class SearchForm extends Component {
             />
           </InputGroup>
 
-          <Button
-            className="search-btn"
-            variant="outline-light"
-            size="lg"
-            type="submit"
-          >
+          <Button variant="outline-light" size="lg" type="submit">
             {this.props.buttonText}
           </Button>
         </form>

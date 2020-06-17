@@ -1,8 +1,8 @@
-form {
+.search-form form {
   margin-top: 50px;
 }
 
-.search-btn {
+.search-form button {
   margin-top: 20px;
   margin-bottom: 20px;
 }

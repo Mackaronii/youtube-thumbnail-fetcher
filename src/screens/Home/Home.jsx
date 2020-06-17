@@ -37,12 +37,14 @@ export default class Home extends Component {
     }
 
     return (
-      <Container>
-        <h1>Youtube Thumbnail Fetcher</h1>
-        <p>Download or view Youtube thumbnails in various resolutions.</p>
-        <ThumbnailForm onVideoInfoFetched={this.onVideoInfoFetched} />
+      <div>
+        <Container className="home-container">
+          <h1>Youtube Thumbnail Fetcher</h1>
+          <p>View Youtube thumbnails in various resolutions.</p>
+          <ThumbnailForm onVideoInfoFetched={this.onVideoInfoFetched} />
+        </Container>
         {thumbnailDetails}
-      </Container>
+      </div>
     );
   }
 }

@@ -1,27 +1,41 @@
 import React, { Component } from "react";
+import "./ThumbnailDetails.css";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
+import VideoInfo from "./components/VideoInfo/VideoInfo";
+import DownloadVidePanel from "./components/DownloadViewPanel/DownloadViewPanel";
 
 export default class ThumbnailDetails extends Component {
   render() {
     // Extract video info
     const TITLE = this.props.videoInfo.title;
     const CHANNEL = this.props.videoInfo.channelTitle;
-    const DESCRIPTION = this.props.videoInfo.description;
-    const PUBLISH_DATE = this.props.videoInfo.publishedAt;
 
+    // Convert publish date to Date object and then format to UTC string
+    const PUBLISH_DATE = new Date(
+      this.props.videoInfo.publishedAt
+    ).toUTCString();
+
+    // Get max res image
     const thumbnails = this.props.videoInfo.thumbnails;
-    const THUMBNAIL_DEFAULT = thumbnails.default;
-    const THUMBNAIL_MEDIUM = thumbnails.medium;
-    const THUMBNAIL_HIGH = thumbnails.high;
-    const THUMBNAIL_STANDARD = thumbnails.standard;
     const THUMBNAIL_MAXRES = thumbnails.maxres;
 
     return (
-      <div>
-        <Image src={THUMBNAIL_MAXRES.url} style={{ width: "50%" }} fluid />
-        <h2>{TITLE}</h2>
-        <h3>By {CHANNEL}</h3>
-      </div>
+      <Container className="thumbnail-details-container">
+        <Row>
+          <Col>
+            <Image src={THUMBNAIL_MAXRES.url} fluid />
+          </Col>
+          <Col>
+            <VideoInfo title="Video Title" body={TITLE} />
+            <VideoInfo title="Channel Name" body={CHANNEL} />
+            <VideoInfo title="Publish Date" body={PUBLISH_DATE} />
+          </Col>
+        </Row>
+        <DownloadVidePanel thumbnails={thumbnails} />
+      </Container>
     );
   }
 }
