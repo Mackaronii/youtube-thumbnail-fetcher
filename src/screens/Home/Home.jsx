@@ -42,8 +42,8 @@ export default class Home extends Component {
           <h1>Youtube Thumbnail Fetcher</h1>
           <p>View Youtube thumbnails in various resolutions.</p>
           <ThumbnailForm onVideoInfoFetched={this.onVideoInfoFetched} />
+          {thumbnailDetails}
         </Container>
-        {thumbnailDetails}
       </div>
     );
   }
