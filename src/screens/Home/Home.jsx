@@ -43,7 +43,7 @@ export default class Home extends Component {
     const ERROR_DETAILS = (
       <ErrorDetails
         title="Video Not Found"
-        body="The provided URL does not go to a valid Youtube video."
+        body="The provided URL does not go to a valid YouTube video."
       />
     );
 
@@ -86,8 +86,8 @@ export default class Home extends Component {
     return (
       <div>
         <Container className="home-container">
-          <h1>Youtube Thumbnail Fetcher</h1>
-          <p>View Youtube thumbnails in various resolutions.</p>
+          <h1>YouTube Thumbnail Fetcher</h1>
+          <p>View YouTube thumbnails in various resolutions.</p>
           <ThumbnailForm
             onBadUserInput={this.onBadUserInput}
             onVideoInfoFetched={this.onVideoInfoFetched}

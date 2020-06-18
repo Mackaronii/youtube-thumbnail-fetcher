@@ -42,7 +42,7 @@ export default class ThumbnailSearchBar extends Component {
   render() {
     return (
       <SearchForm
-        placeholderText="https://www.youtube.com/watch?v={ Youtube video ID goes here }"
+        placeholderText="https://www.youtube.com/watch?v={ YouTube video ID goes here }"
         buttonText="Get Thumbnails"
         isLoading={this.state.isLoading}
         onSubmit={this.parseUserInput}
