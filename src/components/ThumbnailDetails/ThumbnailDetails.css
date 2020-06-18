@@ -1,3 +1,7 @@
 .thumbnail-details-container {
   margin-top: 50px;
 }
+
+.thumbnail-details-container img {
+  margin-bottom: 20px;
+}

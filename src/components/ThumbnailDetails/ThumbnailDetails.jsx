@@ -25,10 +25,10 @@ export default class ThumbnailDetails extends Component {
     return (
       <Container className="thumbnail-details-container">
         <Row>
-          <Col>
+          <Col xs={12} md={6}>
             <Image src={THUMBNAIL_MAXRES.url} thumbnail fluid />
           </Col>
-          <Col>
+          <Col xs={12} md={6}>
             <VideoInfo title="Video Title" body={TITLE} />
             <VideoInfo title="Channel Name" body={CHANNEL} />
             <VideoInfo title="Publish Date" body={PUBLISH_DATE} />
