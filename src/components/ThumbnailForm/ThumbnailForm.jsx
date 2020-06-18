@@ -19,7 +19,6 @@ export default class ThumbnailSearchBar extends Component {
       this.getVideoInfo(ID);
     } catch (error) {
       // Failed to parse user input
-      console.log(error.message);
       this.props.onBadUserInput();
     }
   }

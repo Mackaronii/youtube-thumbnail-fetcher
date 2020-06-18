@@ -23,7 +23,7 @@ export default class Home extends Component {
   }
 
   onBadUserInput() {
-    console.log("Failed to parse URL");
+    console.error("Failed to parse URL");
 
     // Set up an ErrorDetails component
     const ERROR_DETAILS = (
@@ -37,7 +37,7 @@ export default class Home extends Component {
   }
 
   onVideoNotFound() {
-    console.log("Video not found");
+    console.error("Video not found");
 
     // Set up an ErrorDetails component
     const ERROR_DETAILS = (
