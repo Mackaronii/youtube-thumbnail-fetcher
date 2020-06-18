@@ -1,0 +1,8 @@
+.error-details {
+  margin-top: 100px;
+}
+
+.error-details h3,
+p {
+  color: white;
+}
