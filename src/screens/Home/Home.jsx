@@ -4,6 +4,7 @@ import MyTypical from "../../components/MyTypical/MyTypical";
 import ThumbnailForm from "../../components/ThumbnailForm/ThumbnailForm";
 import ThumbnailDetails from "../../components/ThumbnailDetails/ThumbnailDetails";
 import ErrorDetails from "../../components/ErrorDetails/ErrorDetails";
+import MyParticlesBg from "../../components/MyParticlesBg/MyParticlesBg";
 import "./Home.css";
 
 export default class Home extends Component {
@@ -11,28 +12,9 @@ export default class Home extends Component {
     super(props);
 
     // Initialize a constant MyTypical component
-    const TYPICAL_STEPS = [
-      "View thumbnails in various resolutions.",
-      3000,
-      "Available resolutions include: Default (120x90)",
-      1000,
-      "Available resolutions include: Medium (320x180)",
-      1000,
-      "Available resolutions include: High (480x360)",
-      1000,
-      "Available resolutions include: Standard (640x480)",
-      1000,
-      "Available resolutions include: Maximum (1280x720)",
-      2000,
-      "Enter a YouTube video URL below to get started!",
-      3000,
-    ];
-
-    this.TYPICAL = <MyTypical steps={TYPICAL_STEPS} />;
+    this.TYPICAL = <MyTypical />;
 
     this.state = {
-      thumbnailDetails: undefined,
-      errorDetails: undefined,
       showTypical: true,
       showThumbnailDetails: false,
       showErrorDetails: false,
@@ -86,10 +68,9 @@ export default class Home extends Component {
   }
 
   showThumbnailDetails(thumbnailDetails) {
-    // Show ThumbnailDetails and hide ErrorDetails
+    // Show ThumbnailDetails and hide Typical + ErrorDetails
     this.setState({
       thumbnailDetails: thumbnailDetails,
-      errorDetails: undefined,
       showTypical: false,
       showThumbnailDetails: true,
       showErrorDetails: false,
@@ -97,9 +78,8 @@ export default class Home extends Component {
   }
 
   showErrorDetails(errorDetails) {
-    // Show ErrorDetails and hide ThumbnailDetails
+    // Show Typical + ErrorDetails and hide ThumbnailDetails
     this.setState({
-      thumbnailDetails: undefined,
       errorDetails: errorDetails,
       showTypical: true,
       showThumbnailDetails: false,
@@ -120,6 +100,7 @@ export default class Home extends Component {
           {this.state.showThumbnailDetails && this.state.thumbnailDetails}
           {this.state.showErrorDetails && this.state.errorDetails}
         </Container>
+        <MyParticlesBg />
       </div>
     );
   }
