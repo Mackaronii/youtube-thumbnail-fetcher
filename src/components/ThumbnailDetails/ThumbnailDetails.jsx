@@ -19,9 +19,14 @@ export default class ThumbnailDetails extends Component {
       this.props.videoInfo.publishedAt
     ).toUTCString();
 
-    // Get max res image
+    // Get best resolution thumbnail (availability differs depending on how old the video is)
     const thumbnails = this.props.videoInfo.thumbnails;
-    const THUMBNAIL_MAXRES = thumbnails.maxres;
+    const THUMBNAIL_BEST_RES =
+      thumbnails[
+        Object.keys(this.props.videoInfo.thumbnails)[
+          Object.keys(this.props.videoInfo.thumbnails).length - 1
+        ]
+      ];
 
     return (
       <Container className="thumbnail-details-container">
@@ -34,7 +39,7 @@ export default class ThumbnailDetails extends Component {
             >
               {(props) => (
                 <div style={props}>
-                  <Image src={THUMBNAIL_MAXRES.url} thumbnail fluid />
+                  <Image src={THUMBNAIL_BEST_RES.url} thumbnail fluid />
                 </div>
               )}
             </Spring>
