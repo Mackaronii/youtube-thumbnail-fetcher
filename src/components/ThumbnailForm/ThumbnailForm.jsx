@@ -29,7 +29,7 @@ export default class ThumbnailSearchBar extends Component {
 
   getVideoInfo(id) {
     const BASE_URL = "https://www.googleapis.com/youtube/v3";
-    const API_KEY = "AIzaSyDHXwLACnzxWVGqZgiBY9RBvNH5QB_NIHA";
+    const API_KEY = process.env.REACT_APP_API_KEY;
     const VIDEO_URL = `${BASE_URL}/videos?key=${API_KEY}&part=snippet&id=${id}`;
 
     // Disable Get Thumbnails button
