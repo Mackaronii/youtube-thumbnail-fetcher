@@ -27,7 +27,6 @@ export default class ThumbnailSearchBar extends Component {
     const BASE_URL = "https://www.googleapis.com/youtube/v3";
     const API_KEY = "AIzaSyDHXwLACnzxWVGqZgiBY9RBvNH5QB_NIHA";
     const VIDEO_URL = `${BASE_URL}/videos?key=${API_KEY}&part=snippet&id=${id}`;
-    console.log(`Fetching thumbnails from the following URL: ${VIDEO_URL}`);
 
     // Disable Get Thumbnails button
     this.setState({ isLoading: true }, () => {
