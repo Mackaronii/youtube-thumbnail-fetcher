@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Spring } from "react-spring/renderprops";
 import "./ThumbnailDetails.css";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -26,15 +27,67 @@ export default class ThumbnailDetails extends Component {
       <Container className="thumbnail-details-container">
         <Row>
           <Col xs={12} md={6}>
-            <Image src={THUMBNAIL_MAXRES.url} thumbnail fluid />
+            <Spring
+              from={{ opacity: 0, marginTop: 50 }}
+              to={{ opacity: 1, marginTop: 0 }}
+              config={{ duration: 1000 }}
+            >
+              {(props) => (
+                <div style={props}>
+                  <Image src={THUMBNAIL_MAXRES.url} thumbnail fluid />
+                </div>
+              )}
+            </Spring>
           </Col>
           <Col xs={12} md={6}>
-            <VideoInfo title="Video Title" body={TITLE} />
-            <VideoInfo title="Channel Name" body={CHANNEL} />
-            <VideoInfo title="Publish Date" body={PUBLISH_DATE} />
+            <Spring
+              from={{ opacity: 0, marginTop: -50 }}
+              to={{ opacity: 1, marginTop: 0 }}
+              config={{ delay: 1000, duration: 1000 }}
+            >
+              {(props) => (
+                <div style={props}>
+                  <VideoInfo title="Video Title" body={TITLE} />
+                </div>
+              )}
+            </Spring>
+
+            <Spring
+              from={{ opacity: 0, marginTop: -50 }}
+              to={{ opacity: 1, marginTop: 0 }}
+              config={{ delay: 1500, duration: 1000 }}
+            >
+              {(props) => (
+                <div style={props}>
+                  <VideoInfo title="Channel Name" body={CHANNEL} />
+                </div>
+              )}
+            </Spring>
+
+            <Spring
+              from={{ opacity: 0, marginTop: -50 }}
+              to={{ opacity: 1, marginTop: 0 }}
+              config={{ delay: 2000, duration: 1000 }}
+            >
+              {(props) => (
+                <div style={props}>
+                  <VideoInfo title="Publish Date" body={PUBLISH_DATE} />
+                </div>
+              )}
+            </Spring>
           </Col>
         </Row>
-        <ThumbnailLinks thumbnails={thumbnails} />
+        <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={{ delay: 3000, duration: 1000 }}
+        >
+          {(props) => (
+            <div style={props}>
+              <ThumbnailLinks thumbnails={thumbnails} />
+            </div>
+          )}
+        </Spring>
       </Container>
     );
   }

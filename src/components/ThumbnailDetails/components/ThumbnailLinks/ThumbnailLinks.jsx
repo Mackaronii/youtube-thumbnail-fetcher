@@ -23,19 +23,20 @@ export default class ThumbnailLinks extends Component {
       THUMBNAIL_MAXRES,
     ];
 
+    // Create link buttons
+    const LINK_BUTTONS = thumbnailArray.map(function (item, i) {
+      const BUTTON_LABEL = `${item.width}x${item.height}`;
+      return (
+        <Button key={i} variant="light" href={item.url} target="_blank">
+          {BUTTON_LABEL}
+        </Button>
+      );
+    });
+
     return (
       <div className="thumbnail-links">
         <h3>Thumbnail Links</h3>
-        <ButtonGroup>
-          {thumbnailArray.map(function (item, i) {
-            const BUTTON_LABEL = `${item.width}x${item.height}`;
-            return (
-              <Button key={i} variant="light" href={item.url} target="_blank">
-                {BUTTON_LABEL}
-              </Button>
-            );
-          })}
-        </ButtonGroup>
+        <ButtonGroup>{LINK_BUTTONS}</ButtonGroup>
       </div>
     );
   }
