@@ -34,7 +34,7 @@ export default class Home extends Component {
     const ERROR_DETAILS = (
       <ErrorDetails
         title="Failed to Parse URL"
-        body="The URL must match the search bar hint."
+        body="The URL must contain either youtube.com/watch?v= or youtu.be/."
       />
     );
 

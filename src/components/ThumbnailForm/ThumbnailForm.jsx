@@ -13,11 +13,15 @@ export default class ThumbnailSearchBar extends Component {
   }
 
   parseUserInput(url) {
-    try {
-      // Try to parse user input
-      const ID = url.split("watch?v=")[1].split("&")[0];
+    if (url.includes("youtube.com/watch?v=")) {
+      // Parse user input for desktop URLs
+      const ID = url.split("youtube.com/watch?v=")[1].split("&")[0];
       this.getVideoInfo(ID);
-    } catch (error) {
+    } else if (url.includes("youtu.be/")) {
+      // Parse user input for mobile URLs
+      const ID = url.split("youtu.be/")[1];
+      this.getVideoInfo(ID);
+    } else {
       // Failed to parse user input
       this.props.onBadUserInput();
     }
@@ -41,7 +45,7 @@ export default class ThumbnailSearchBar extends Component {
   render() {
     return (
       <SearchForm
-        placeholderText="https://www.youtube.com/watch?v={ YouTube video ID goes here }"
+        placeholderText="Enter a YouTube video URL"
         buttonText="Get Thumbnails"
         isLoading={this.state.isLoading}
         onSubmit={this.parseUserInput}
