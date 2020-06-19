@@ -4,6 +4,28 @@ import Button from "react-bootstrap/Button";
 import "./ThumbnailLinks.css";
 
 export default class ThumbnailLinks extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMobile: false,
+    };
+
+    this.updatePredicate = this.updatePredicate.bind(this);
+  }
+
+  componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
+  }
+
+  updatePredicate() {
+    this.setState({ isMobile: window.innerWidth < 768 });
+  }
+
   render() {
     const thumbnails = this.props.thumbnails;
     const thumbnailKeys = Object.keys(this.props.thumbnails);
@@ -26,7 +48,11 @@ export default class ThumbnailLinks extends Component {
     return (
       <div className="thumbnail-links">
         <h3>Thumbnail Links</h3>
-        <ButtonGroup>{LINK_BUTTONS}</ButtonGroup>
+        {this.state.isMobile ? (
+          <ButtonGroup vertical>{LINK_BUTTONS}</ButtonGroup>
+        ) : (
+          <ButtonGroup>{LINK_BUTTONS}</ButtonGroup>
+        )}
       </div>
     );
   }
