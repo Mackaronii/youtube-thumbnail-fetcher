@@ -5,7 +5,6 @@
 1. Visit https://mackaronii.github.io/youtube-thumbnail-fetcher/.
 
 2. Enter a YouTube video URL in the search bar then press the "Get Thumbnails" button.
-   The URL must match contain either "youtube.com/watch?v=" (desktop) or "youtu.be/" (mobile).
 
 3. Click on the resolution of the thumbnail that you want to view.
 
